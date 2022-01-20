@@ -13,4 +13,12 @@ spec:
       releaseName: helm
   destination:
     server: https://kubernetes.default.svc
-    namespace: helm
+    namespace: myapp
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true
