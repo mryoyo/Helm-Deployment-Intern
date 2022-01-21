@@ -8,7 +8,7 @@ spec:
   source:
     chart: Microservice
     repoURL: https://github.com/Patiphannew/helm-Deployment-Intern.git
-    targetRevision: v3.7.2
+    targetRevision: v0.1.0
     helm:
       releaseName: helm01
   destination:
