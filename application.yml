@@ -8,13 +8,13 @@ spec:
   source:
     chart: Microservice
     repoURL: https://github.com/Patiphannew/helm-Deployment-Intern.git
-    targetRevision: 1.16.1
+    targetRevision: main
     helm:
       releaseName: helm01
   destination:
     server: "https://kubernetes.default.svc"
     namespace: myapp02
-    
+
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
