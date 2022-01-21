@@ -7,7 +7,9 @@ spec:
   source:
     chart: Microservice
     repoURL: https://github.com/Patiphannew/helm-Deployment-Intern.git
-    targetRevision: 3.7.2
+    targetRevision: e769063
+    helm:
+      releaseName: helm01
   destination:
     server: "https://kubernetes.default.svc"
     namespace: myapp02
