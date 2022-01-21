@@ -8,6 +8,8 @@ spec:
   source:
     chart: helm
     repoURL: https://github.com/Patiphannew/helm-Deployment-Intern.git
+    targetRevision: main
+    path: helm
     helm:
       releaseName: helm01
   destination:
