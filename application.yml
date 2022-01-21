@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    chart: Microservice
+    chart: helm
     repoURL: https://github.com/Patiphannew/helm-Deployment-Intern.git
     targetRevision: main
     helm:
