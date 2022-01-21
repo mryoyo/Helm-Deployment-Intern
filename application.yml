@@ -14,8 +14,4 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: myapp02
-
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
       
