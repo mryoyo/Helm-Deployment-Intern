@@ -8,9 +8,8 @@ spec:
     namespace: myapp02
     server: "https://kubernetes.default.svc"
   source:
-    path: ''
-    repoURL: https://github.com/Patiphannew/helm-Deployment-Intern.git
-    targetRevision: "1.2.* or >=1.2.0 <1.3.0"
+    path: helm
+    repoURL: "https://github.com/Patiphannew/helm-Deployment-Intern.git"
+    targetRevision: main
     chart: helm
   project: default
-
