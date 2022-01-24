@@ -14,7 +14,7 @@ spec:
   # Source of the application manifests
   source:
     repoURL: https://github.com/Patiphannew/helm-Deployment-Intern.git
-    targetRevision: HEAD
+    targetRevision: main
     path: helm
 
     # helm specific config
@@ -28,7 +28,7 @@ spec:
       #   forceString: true # ensures that value is treated as a string
 
       # Release name override (defaults to application name)
-      releaseName: helm01
+      releaseName: helm02
 
       # Helm values files for overriding values in the helm chart
       # The path is relative to the spec.source.path directory defined above

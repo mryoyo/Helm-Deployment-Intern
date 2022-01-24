@@ -12,6 +12,8 @@ spec:
     path: helm
     helm:
       releaseName: helm01
+      valueFiles:
+        - helm-values/values-supphakit-micro-service.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: myapp02
