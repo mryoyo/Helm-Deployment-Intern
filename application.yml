@@ -10,6 +10,6 @@ spec:
   source:
     path: helm
     repoURL: "https://github.com/Patiphannew/helm-Deployment-Intern.git"
-    targetRevision: main
+    targetRevision: dev
     chart: helm
   project: default
