@@ -4,14 +4,13 @@ metadata:
   name: myapp-argo-application-helm
   namespace: argocd
 spec:
-  project: default
+  destination:
+    namespace: myapp02
+    server: "https://kubernetes.default.svc"
   source:
-    chart: helm
+    path: ''
     repoURL: https://github.com/Patiphannew/helm-Deployment-Intern.git
     targetRevision: main
-    path: helm
-    helm:
-      releaseName: helm01
-  destination:
-    server: "https://kubernetes.default.svc"
-    namespace: myapp02
+    chart: helm
+  project: default
+
