@@ -14,7 +14,7 @@ spec:
   # Source of the application manifests
   source:
     repoURL: https://github.com/Patiphannew/helm-Deployment-Intern.git
-    targetRevision: main
+    targetRevision: HEAD
     path: helm
 
     # helm specific config
