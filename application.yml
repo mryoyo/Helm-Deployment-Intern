@@ -6,8 +6,9 @@ metadata:
 spec:
   project: default
   source:
+    chart: helm
     repoURL: https://github.com/Patiphannew/helm-Deployment-Intern.git
-    targetRevision: HEAD
+    targetRevision: main
     path: helm
     helm:
       releaseName: helm01
