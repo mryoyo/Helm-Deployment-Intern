@@ -17,7 +17,7 @@ helloworld:
   path: /hello
   pathType: Exact
 ingress:
-  host: a15a235b3cbc24e049a07f419dd365fc-8579903.ap-southeast-1.elb.amazonaws.com
+  host: a512c2b6f038946cd9e0d820e433f5f0-1410831958.ap-southeast-1.elb.amazonaws.com
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.org/rewrites: "serviceName=echoserver-svc rewrite=/"

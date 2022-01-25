@@ -1,14 +1,15 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: myapp-argo-application-helm
-  namespace: argocd
-spec:
-  project: default
-  destination:
-    namespace: myapp02
-    server: "https://kubernetes.default.svc"
-  source:
-    path: helm
-    repoURL: "https://github.com/Patiphannew/helm-Deployment-Intern.git"
-    targetRevision: HEAD
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: myapp-argo-application-helm
+#   namespace: argocd
+# spec:
+#   destination:
+#     namespace: myapp02
+#     server: "https://kubernetes.default.svc"
+#   source:
+#     path: helm
+#     repoURL: "https://github.com/Patiphannew/helm-Deployment-Intern.git"
+#     targetRevision: HEAD
+#     chart: helm
+#   project: default
