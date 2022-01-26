@@ -8,8 +8,6 @@ metadata:
     {{ $key }}: {{ $value | quote }}
   {{- end }}
   {{- end }}
-  labels:
-    app: {{ .Release.Name }}-{{ .Values.ingress.name }}
 
 spec:
   rules:
@@ -27,14 +25,3 @@ spec:
             backend:
               serviceName: {{ .Values.helloworld.name }}-svc
               servicePort: {{ .Values.helloworld.servicePort }}
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ .Values.ingress.name }}-svc
-spec:
-  type: {{ .Values.ingress.serviceType }}
-  ports:
-  - port: {{ .Values.ingress.servicePort }}
-  selector:
-    app: {{ .Release.Name }}-ingress
