@@ -1,19 +1,24 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ .Release.Name }}-ingress
+  name: {{ .Values.ingress.name }}
   {{- if .Values.ingress.annotations }}
   annotations:
   {{- range $key, $value := .Values.ingress.annotations }}
     {{ $key }}: {{ $value | quote }}
   {{- end }}
   {{- end }}
-
 spec:
   rules:
-   - host: {{ .Values.ingress.host }}
-     http:
+    - host: {{ .Values.ingress.host }}
+      http:
         paths:
+          - path: {{ .Values.pgadmin.path }}
+            pathType: {{ .Values.pgadmin.pathType }}
+            backend:
+              serviceName: {{ .Values.pgadmin.name }}-svc
+              servicePort: {{ .Values.pgadmin.servicePort }}
+
           - path: {{ .Values.echoserver.path }}
             pathType: {{ .Values.echoserver.pathType }}
             backend:
