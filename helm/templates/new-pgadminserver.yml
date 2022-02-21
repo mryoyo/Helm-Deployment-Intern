@@ -45,3 +45,24 @@ spec:
     - port: {{ .Values.pgadmin.servicePort }}
   selector:
     app: {{ .Values.pgadmin.name }}
+    
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: pgadmin-config
+data:
+ servers.json: |
+   {
+       "Servers": {
+         "1": {
+           "Name": "newpgdb",
+           "Group": "Servers",
+           "Port": 5432,
+           "Username": "postgres",
+           "Host": "newpgdb.cnae1m6nnifz.ap-southeast-1.rds.amazonaws.com",
+           "SSLMode": "prefer",
+           "MaintenanceDB": "postgres"
+         }
+       }
+   }
