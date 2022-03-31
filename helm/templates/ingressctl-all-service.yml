@@ -1,28 +1,28 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: {{ .Values.nginxig.name }}
-  namespace: {{ .Values.nginxig.namespaceapp }}
-spec:
-  project: {{ .Values.nginxig.project }}
-  source:
-    chart: {{ .Values.nginxig.chart }}
-    repoURL: {{ .Values.nginxig.repo }}
-    targetRevision: {{ .Values.nginxig.targetrevision }}
-    helm:
-      values: |-
-        controller:
-          service:
-            create: false
-  destination:
-    server: {{ .Values.nginxig.server }}
-    namespace: {{ .Values.nginxig.namespacedest }}
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: {{ .Values.nginxig.name }}
+#   namespace: {{ .Values.nginxig.namespaceapp }}
+# spec:
+#   project: {{ .Values.nginxig.project }}
+#   source:
+#     chart: {{ .Values.nginxig.chart }}
+#     repoURL: {{ .Values.nginxig.repo }}
+#     targetRevision: {{ .Values.nginxig.targetrevision }}
+#     helm:
+#       values: |-
+#         controller:
+#           service:
+#             create: false
+#   destination:
+#     server: {{ .Values.nginxig.server }}
+#     namespace: {{ .Values.nginxig.namespacedest }}
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
 
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -64,8 +64,10 @@ spec:
     targetRevision: {{ .Values.traefikig.targetrevision }}
     helm:
       values: |-
-        proxy:
+        service:
           enabled: false
+        providers:
+          ingressClass: traefik
   destination:
     server: {{ .Values.traefikig.server }}
     namespace: {{ .Values.traefikig.namespacedest }}
