@@ -31,7 +31,7 @@ spec:
 #     targetPort: {{ .Values.kongnp.tghttp }}
 #     protocol: {{ .Values.kongnp.protocol }}
 #     name: {{ .Values.kongnp.http }}
-#     nodeport: {{ .Values.kongnp.nodeport }}
+#     nginxnp: {{ .Values.kongnp.nginxnp }}
 #   - port: {{ .Values.kongnp.porthttps }}
 #     targetPort: {{ .Values.kongnp.tghttps }}
 #     protocol: {{ .Values.kongnp.protocol }}
@@ -52,7 +52,7 @@ spec:
 #     targetPort: {{ .Values.traefiknp.tghttp }}
 #     protocol: {{ .Values.traefiknp.protocol }}
 #     name: {{ .Values.traefiknp.http }}
-#     nodeport: {{ .Values.traefiknp.nodeport }}
+#     nginxnp: {{ .Values.traefiknp.nginxnp }}
 #   - port: {{ .Values.traefiknp.porthttps }}
 #     targetPort: {{ .Values.traefiknp.tghttps }}
 #     protocol: {{ .Values.traefiknp.protocol }}
