@@ -51,9 +51,9 @@ spec:
     targetPort: 8000
     protocol: TCP
     name: http
-    nodePort: 30880
+    nodePort: 32592
   - port: 443
-    targetPort: 443
+    targetPort: 8443
     protocol: TCP
     name: https
     nodePort: 30043
@@ -94,9 +94,9 @@ spec:
     targetPort: 8000
     protocol: TCP
     name: http
-    nodePort: 30088
+    nodePort: 32591
   - port: 443
-    targetPort: 443
+    targetPort: 8443
     protocol: TCP
     name: https
     nodePort: 30004
