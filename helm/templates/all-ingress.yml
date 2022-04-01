@@ -41,7 +41,7 @@ metadata:
     konghq.com/strip-path: "true"
 spec:
   rules:
-    - host: nlb-new02-156f85a5e0bb28f8.elb.ap-southeast-1.amazonaws.com
+    - host: nlb-new02-b800bc45a781f86d.elb.ap-southeast-1.amazonaws.com
       http:
         paths:
           - path: /kongecho
@@ -68,7 +68,7 @@ metadata:
     kubernetes.io/ingress.class: "traefik"
 spec:
   rules:
-    - host: nlb-new02-156f85a5e0bb28f8.elb.ap-southeast-1.amazonaws.com
+    - host: nlb-new02-b800bc45a781f86d.elb.ap-southeast-1.amazonaws.com
       http:
         paths:
           - path: /traefikecho
