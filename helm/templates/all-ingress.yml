@@ -32,56 +32,56 @@ spec:
               servicePort: {{ .Values.helloworld.servicePort }}
 
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: kong-ingress
-  annotations:
-    kubernetes.io/ingress.class: "kong"
-    konghq.com/strip-path: "true"
-spec:
-  rules:
-    - host: nlb-new02-b800bc45a781f86d.elb.ap-southeast-1.amazonaws.com
-      http:
-        paths:
-          - path: /kongecho
-            pathType: Prefix
-            backend:
-              service:
-                name: echoserver-svc
-                port:
-                  number: 80
-          - path: /konghello
-            pathType: Prefix
-            backend:
-              service:
-                name: helloworld-svc
-                port:
-                  number: 80
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: kong-ingress
+#   annotations:
+#     kubernetes.io/ingress.class: "kong"
+#     konghq.com/strip-path: "true"
+# spec:
+#   rules:
+#     - host: nlb-new02-b800bc45a781f86d.elb.ap-southeast-1.amazonaws.com
+#       http:
+#         paths:
+#           - path: /kongecho
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: echoserver-svc
+#                 port:
+#                   number: 80
+#           - path: /konghello
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: helloworld-svc
+#                 port:
+#                   number: 80
 
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: traefik-ingress
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-spec:
-  rules:
-    - host: nlb-new02-b800bc45a781f86d.elb.ap-southeast-1.amazonaws.com
-      http:
-        paths:
-          - path: /traefikecho
-            pathType: Prefix
-            backend:
-              service:
-                name: echoserver-svc
-                port:
-                  number: 80
-          - path: /traefikhello
-            pathType: Prefix
-            backend:
-              service:
-                name: helloworld-svc
-                port:
-                  number: 80
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: traefik-ingress
+#   annotations:
+#     kubernetes.io/ingress.class: "traefik"
+# spec:
+#   rules:
+#     - host: nlb-new02-b800bc45a781f86d.elb.ap-southeast-1.amazonaws.com
+#       http:
+#         paths:
+#           - path: /traefikecho
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: echoserver-svc
+#                 port:
+#                   number: 80
+#           - path: /traefikhello
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: helloworld-svc
+#                 port:
+#                   number: 80
