@@ -25,24 +25,49 @@
 #       - CreateNamespace=true
 
 ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: {{ .Values.kongig.name }}
+#   namespace: {{ .Values.kongig.namespaceapp }}
+# spec:
+#   project: {{ .Values.kongig.project }}
+#   source:
+#     chart: {{ .Values.kongig.chart }}
+#     repoURL: {{ .Values.kongig.repo }}
+#     targetRevision: {{ .Values.kongig.targetrevision }}
+#     helm:
+#       values: |-
+#         proxy:
+#           enabled: false
+#   destination:
+#     server: {{ .Values.kongig.server }}
+#     namespace: {{ .Values.kongig.namespacedest }}
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ .Values.kongig.name }}
-  namespace: {{ .Values.kongig.namespaceapp }}
+  name: kong-ingress-controller
+  namespace: argocd
 spec:
-  project: {{ .Values.kongig.project }}
+  project: default
   source:
-    chart: {{ .Values.kongig.chart }}
-    repoURL: {{ .Values.kongig.repo }}
-    targetRevision: {{ .Values.kongig.targetrevision }}
+    chart: kong
+    repoURL: https://charts.konghq.com
+    targetRevision: 2.7.0
     helm:
       values: |-
         proxy:
           enabled: false
   destination:
-    server: {{ .Values.kongig.server }}
-    namespace: {{ .Values.kongig.namespacedest }}
+    server: https://kubernetes.default.svc
+    namespace: kong
   syncPolicy:
     automated:
       prune: true
@@ -51,26 +76,51 @@ spec:
       - CreateNamespace=true
 
 ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: {{ .Values.traefikig.name }}
+#   namespace: {{ .Values.traefikig.namespaceapp }}
+# spec:
+#   project: {{ .Values.traefikig.project }}
+#   source:
+#     chart: {{ .Values.traefikig.chart }}
+#     repoURL: {{ .Values.traefikig.repo }}
+#     targetRevision: {{ .Values.traefikig.targetrevision }}
+#     helm:
+#       values: |-
+#         service:
+#           enabled: false
+#         providers:
+#           ingressClass: traefik
+#   destination:
+#     server: {{ .Values.traefikig.server }}
+#     namespace: {{ .Values.traefikig.namespacedest }}
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ .Values.traefikig.name }}
-  namespace: {{ .Values.traefikig.namespaceapp }}
+  name: traefik-ingress-controller
+  namespace: argocd
 spec:
-  project: {{ .Values.traefikig.project }}
+  project: default
   source:
-    chart: {{ .Values.traefikig.chart }}
-    repoURL: {{ .Values.traefikig.repo }}
-    targetRevision: {{ .Values.traefikig.targetrevision }}
+    chart: traefik
+    repoURL: https://helm.traefik.io/traefik
+    targetRevision: 10.15.0
     helm:
       values: |-
         service:
           enabled: false
-        providers:
-          ingressClass: traefik
   destination:
-    server: {{ .Values.traefikig.server }}
-    namespace: {{ .Values.traefikig.namespacedest }}
+    server: https://kubernetes.default.svc
+    namespace: traefik
   syncPolicy:
     automated:
       prune: true
