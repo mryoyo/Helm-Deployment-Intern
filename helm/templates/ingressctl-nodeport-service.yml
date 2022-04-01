@@ -1,61 +1,61 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: {{ .Values.nginxnp.name }}
+#   namespace: {{ .Values.nginxnp.namespace }}
+# spec:
+#   type: {{ .Values.nginxnp.type }}
+#   ports:
+#   - port: {{ .Values.nginxnp.porthttp }}
+#     targetPort: {{ .Values.nginxnp.tghttp }}
+#     protocol: {{ .Values.nginxnp.protocol }}
+#     name: {{ .Values.nginxnp.http }}
+#     nodeport: {{ .Values.nginxnp.nodeport }}
+#   - port: {{ .Values.nginxnp.porthttps }}
+#     targetPort: {{ .Values.nginxnp.tghttps }}
+#     protocol: {{ .Values.nginxnp.protocol }}
+#     name: {{ .Values.nginxnp.https }}
+#   selector:
+#     app: {{ .Values.nginxnp.app }}
+
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.nginxnp.name }}
-  namespace: {{ .Values.nginxnp.namespace }}
+  name: {{ .Values.kongnp.name }}
+  namespace: {{ .Values.kongnp.namespace }}
 spec:
-  type: {{ .Values.nginxnp.type }}
+  type: {{ .Values.kongnp.type }}
   ports:
-  - port: {{ .Values.nginxnp.porthttp }}
-    targetPort: {{ .Values.nginxnp.tghttp }}
-    protocol: {{ .Values.nginxnp.protocol }}
-    name: {{ .Values.nginxnp.http }}
-    nodeport: {{ .Values.nginxnp.nodeport }}
-  - port: {{ .Values.nginxnp.porthttps }}
-    targetPort: {{ .Values.nginxnp.tghttps }}
-    protocol: {{ .Values.nginxnp.protocol }}
-    name: {{ .Values.nginxnp.https }}
+  - port: {{ .Values.kongnp.porthttp }}
+    targetPort: {{ .Values.kongnp.tghttp }}
+    protocol: {{ .Values.kongnp.protocol }}
+    name: {{ .Values.kongnp.http }}
+    nodeport: {{ .Values.kongnp.nodeport }}
+  - port: {{ .Values.kongnp.porthttps }}
+    targetPort: {{ .Values.kongnp.tghttps }}
+    protocol: {{ .Values.kongnp.protocol }}
+    name: {{ .Values.kongnp.https }}
   selector:
-    app: {{ .Values.nginxnp.app }}
+    app.kubernetes.io/name: {{ .Values.kongnp.app }}
 
 ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: {{ .Values.kongnp.name }}
-#   namespace: {{ .Values.kongnp.namespace }}
-# spec:
-#   type: {{ .Values.kongnp.type }}
-#   ports:
-#   - port: {{ .Values.kongnp.porthttp }}
-#     targetPort: {{ .Values.kongnp.tghttp }}
-#     protocol: {{ .Values.kongnp.protocol }}
-#     name: {{ .Values.kongnp.http }}
-#     nginxnp: {{ .Values.kongnp.nginxnp }}
-#   - port: {{ .Values.kongnp.porthttps }}
-#     targetPort: {{ .Values.kongnp.tghttps }}
-#     protocol: {{ .Values.kongnp.protocol }}
-#     name: {{ .Values.kongnp.https }}
-#   selector:
-#     app.kubernetes.io/name: {{ .Values.kongnp.app }}
-
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: {{ .Values.traefiknp.name }}
-#   namespace: {{ .Values.traefiknp.namespace }}
-# spec:
-#   type: {{ .Values.traefiknp.type }}
-#   ports:
-#   - port: {{ .Values.traefiknp.porthttp }}
-#     targetPort: {{ .Values.traefiknp.tghttp }}
-#     protocol: {{ .Values.traefiknp.protocol }}
-#     name: {{ .Values.traefiknp.http }}
-#     nginxnp: {{ .Values.traefiknp.nginxnp }}
-#   - port: {{ .Values.traefiknp.porthttps }}
-#     targetPort: {{ .Values.traefiknp.tghttps }}
-#     protocol: {{ .Values.traefiknp.protocol }}
-#     name: {{ .Values.traefiknp.https }}
-#   selector:
-#     app.kubernetes.io/name: {{ .Values.traefiknp.app }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.traefiknp.name }}
+  namespace: {{ .Values.traefiknp.namespace }}
+spec:
+  type: {{ .Values.traefiknp.type }}
+  ports:
+  - port: {{ .Values.traefiknp.porthttp }}
+    targetPort: {{ .Values.traefiknp.tghttp }}
+    protocol: {{ .Values.traefiknp.protocol }}
+    name: {{ .Values.traefiknp.http }}
+    nodeport: {{ .Values.traefiknp.nodeport }}
+  - port: {{ .Values.traefiknp.porthttps }}
+    targetPort: {{ .Values.traefiknp.tghttps }}
+    protocol: {{ .Values.traefiknp.protocol }}
+    name: {{ .Values.traefiknp.https }}
+  selector:
+    app.kubernetes.io/name: {{ .Values.traefiknp.app }}
