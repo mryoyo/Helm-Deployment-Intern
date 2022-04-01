@@ -19,43 +19,86 @@
 #     app: {{ .Values.nginxnp.app }}
 
 ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: {{ .Values.kongnp.name }}
+#   namespace: {{ .Values.kongnp.namespace }}
+# spec:
+#   type: {{ .Values.kongnp.type }}
+#   ports:
+#   - port: {{ .Values.kongnp.porthttp }}
+#     targetPort: {{ .Values.kongnp.tghttp }}
+#     protocol: {{ .Values.kongnp.protocol }}
+#     name: {{ .Values.kongnp.http }}
+#     nodeport: {{ .Values.kongnp.nodeport }}
+#   - port: {{ .Values.kongnp.porthttps }}
+#     targetPort: {{ .Values.kongnp.tghttps }}
+#     protocol: {{ .Values.kongnp.protocol }}
+#     name: {{ .Values.kongnp.https }}
+#   selector:
+#     app.kubernetes.io/name: {{ .Values.kongnp.app }}
+
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.kongnp.name }}
-  namespace: {{ .Values.kongnp.namespace }}
+  name: kong
+  namespace: kong
 spec:
-  type: {{ .Values.kongnp.type }}
+  type: NodePort 
   ports:
-  - port: {{ .Values.kongnp.porthttp }}
-    targetPort: {{ .Values.kongnp.tghttp }}
-    protocol: {{ .Values.kongnp.protocol }}
-    name: {{ .Values.kongnp.http }}
-    nodeport: {{ .Values.kongnp.nodeport }}
-  - port: {{ .Values.kongnp.porthttps }}
-    targetPort: {{ .Values.kongnp.tghttps }}
-    protocol: {{ .Values.kongnp.protocol }}
-    name: {{ .Values.kongnp.https }}
+  - port: 80
+    targetPort: 8000
+    protocol: TCP
+    name: http
+    nodePort: 30880
+  - port: 443
+    targetPort: 443
+    protocol: TCP
+    name: https
+    nodePort: 30043
   selector:
-    app.kubernetes.io/name: {{ .Values.kongnp.app }}
+    # app.kubernetes.io/component: app
+    app.kubernetes.io/name: kong
 
 ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: {{ .Values.traefiknp.name }}
+#   namespace: {{ .Values.traefiknp.namespace }}
+# spec:
+#   type: {{ .Values.traefiknp.type }}
+#   ports:
+#   - port: {{ .Values.traefiknp.porthttp }}
+#     targetPort: {{ .Values.traefiknp.tghttp }}
+#     protocol: {{ .Values.traefiknp.protocol }}
+#     name: {{ .Values.traefiknp.http }}
+#     nodeport: {{ .Values.traefiknp.nodeport }}
+#   - port: {{ .Values.traefiknp.porthttps }}
+#     targetPort: {{ .Values.traefiknp.tghttps }}
+#     protocol: {{ .Values.traefiknp.protocol }}
+#     name: {{ .Values.traefiknp.https }}
+#   selector:
+#     app.kubernetes.io/name: {{ .Values.traefiknp.app }}
+
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.traefiknp.name }}
-  namespace: {{ .Values.traefiknp.namespace }}
+  name: treafik
+  namespace: traefik
 spec:
-  type: {{ .Values.traefiknp.type }}
+  type: NodePort 
   ports:
-  - port: {{ .Values.traefiknp.porthttp }}
-    targetPort: {{ .Values.traefiknp.tghttp }}
-    protocol: {{ .Values.traefiknp.protocol }}
-    name: {{ .Values.traefiknp.http }}
-    nodeport: {{ .Values.traefiknp.nodeport }}
-  - port: {{ .Values.traefiknp.porthttps }}
-    targetPort: {{ .Values.traefiknp.tghttps }}
-    protocol: {{ .Values.traefiknp.protocol }}
-    name: {{ .Values.traefiknp.https }}
+  - port: 80
+    targetPort: 8000
+    protocol: TCP
+    name: http
+    nodePort: 30088
+  - port: 443
+    targetPort: 443
+    protocol: TCP
+    name: https
+    nodePort: 30004
   selector:
-    app.kubernetes.io/name: {{ .Values.traefiknp.app }}
+    app.kubernetes.io/name: traefik
