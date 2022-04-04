@@ -19,86 +19,86 @@
 #     app: {{ .Values.nginxnp.app }}
 
 ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: {{ .Values.kongnp.name }}
-#   namespace: {{ .Values.kongnp.namespace }}
-# spec:
-#   type: {{ .Values.kongnp.type }}
-#   ports:
-#   - port: {{ .Values.kongnp.porthttp }}
-#     targetPort: {{ .Values.kongnp.tghttp }}
-#     protocol: {{ .Values.kongnp.protocol }}
-#     name: {{ .Values.kongnp.http }}
-#     nodeport: {{ .Values.kongnp.nodeport }}
-#   - port: {{ .Values.kongnp.porthttps }}
-#     targetPort: {{ .Values.kongnp.tghttps }}
-#     protocol: {{ .Values.kongnp.protocol }}
-#     name: {{ .Values.kongnp.https }}
-#   selector:
-#     app.kubernetes.io/name: {{ .Values.kongnp.app }}
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: kong
-  namespace: kong
+  name: {{ .Values.kongnp.name }}
+  namespace: {{ .Values.kongnp.namespace }}
 spec:
-  type: NodePort 
+  type: {{ .Values.kongnp.type }}
   ports:
-  - port: 80
-    targetPort: 8000
-    protocol: TCP
-    name: http
-    nodePort: 32592
-  - port: 443
-    targetPort: 8443
-    protocol: TCP
-    name: https
-    nodePort: 30043
+  - port: {{ .Values.kongnp.porthttp }}
+    targetPort: {{ .Values.kongnp.tghttp }}
+    protocol: {{ .Values.kongnp.protocol }}
+    name: {{ .Values.kongnp.http }}
+    nodeport: {{ .Values.kongnp.nodeport }}
+  - port: {{ .Values.kongnp.porthttps }}
+    targetPort: {{ .Values.kongnp.tghttps }}
+    protocol: {{ .Values.kongnp.protocol }}
+    name: {{ .Values.kongnp.https }}
   selector:
-    # app.kubernetes.io/component: app
-    app.kubernetes.io/name: kong
+    app.kubernetes.io/name: {{ .Values.kongnp.app }}
+
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: kong
+#   namespace: kong
+# spec:
+#   type: NodePort 
+#   ports:
+#   - port: 80
+#     targetPort: 8000
+#     protocol: TCP
+#     name: http
+#     nodePort: 32592
+#   - port: 443
+#     targetPort: 8443
+#     protocol: TCP
+#     name: https
+#     nodePort: 30043
+#   selector:
+#     # app.kubernetes.io/component: app
+#     app.kubernetes.io/name: kong
 
 ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: {{ .Values.traefiknp.name }}
-#   namespace: {{ .Values.traefiknp.namespace }}
-# spec:
-#   type: {{ .Values.traefiknp.type }}
-#   ports:
-#   - port: {{ .Values.traefiknp.porthttp }}
-#     targetPort: {{ .Values.traefiknp.tghttp }}
-#     protocol: {{ .Values.traefiknp.protocol }}
-#     name: {{ .Values.traefiknp.http }}
-#     nodeport: {{ .Values.traefiknp.nodeport }}
-#   - port: {{ .Values.traefiknp.porthttps }}
-#     targetPort: {{ .Values.traefiknp.tghttps }}
-#     protocol: {{ .Values.traefiknp.protocol }}
-#     name: {{ .Values.traefiknp.https }}
-#   selector:
-#     app.kubernetes.io/name: {{ .Values.traefiknp.app }}
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: treafik
-  namespace: traefik
+  name: {{ .Values.traefiknp.name }}
+  namespace: {{ .Values.traefiknp.namespace }}
 spec:
-  type: NodePort 
+  type: {{ .Values.traefiknp.type }}
   ports:
-  - port: 80
-    targetPort: 8000
-    protocol: TCP
-    name: http
-    nodePort: 32591
-  - port: 443
-    targetPort: 8443
-    protocol: TCP
-    name: https
-    nodePort: 30004
+  - port: {{ .Values.traefiknp.porthttp }}
+    targetPort: {{ .Values.traefiknp.tghttp }}
+    protocol: {{ .Values.traefiknp.protocol }}
+    name: {{ .Values.traefiknp.http }}
+    nodeport: {{ .Values.traefiknp.nodeport }}
+  - port: {{ .Values.traefiknp.porthttps }}
+    targetPort: {{ .Values.traefiknp.tghttps }}
+    protocol: {{ .Values.traefiknp.protocol }}
+    name: {{ .Values.traefiknp.https }}
   selector:
-    app.kubernetes.io/name: traefik
+    app.kubernetes.io/name: {{ .Values.traefiknp.app }}
+
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: treafik
+#   namespace: traefik
+# spec:
+#   type: NodePort 
+#   ports:
+#   - port: 80
+#     targetPort: 8000
+#     protocol: TCP
+#     name: http
+#     nodePort: 32591
+#   - port: 443
+#     targetPort: 8443
+#     protocol: TCP
+#     name: https
+#     nodePort: 30004
+#   selector:
+#     app.kubernetes.io/name: traefik

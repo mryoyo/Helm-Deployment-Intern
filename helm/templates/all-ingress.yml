@@ -35,53 +35,59 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: kong-ingress
+  name: {{ .Values.ingress.kong }}
   annotations:
     kubernetes.io/ingress.class: "kong"
     konghq.com/strip-path: "true"
 spec:
   rules:
-    - host: nlb-new02-b800bc45a781f86d.elb.ap-southeast-1.amazonaws.com
+    - host: {{ .Values.ingress.host }}
       http:
         paths:
-          - path: /kongecho
-            pathType: Prefix
+          - path: {{ .Values.pgadmin.path }}
+            pathType: {{ .Values.pgadmin.pathType }}
             backend:
-              service:
-                name: echoserver-svc
-                port:
-                  number: 80
-          - path: /konghello
-            pathType: Prefix
+              serviceName: {{ .Values.pgadmin.name }}-svc
+              servicePort: {{ .Values.pgadmin.servicePort }}
+
+          - path: {{ .Values.echoserver.path }}
+            pathType: {{ .Values.echoserver.pathType }}
             backend:
-              service:
-                name: helloworld-svc
-                port:
-                  number: 80
+              serviceName: {{ .Values.echoserver.name }}-svc
+              servicePort: {{ .Values.echoserver.servicePort }}
+
+          - path: {{ .Values.pgadmin.path }}
+            pathType: {{ .Values.pgadmin.pathType }}
+            backend:
+              serviceName: {{ .Values.pgadmin.name }}-svc
+              servicePort: {{ .Values.pgadmin.servicePort }}
 
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: traefik-ingress
+  name: {{ .Values.ingress.traefik }}
   annotations:
     kubernetes.io/ingress.class: "traefik"
 spec:
   rules:
-    - host: nlb-new02-b800bc45a781f86d.elb.ap-southeast-1.amazonaws.com
+    - host: {{ .Values.ingress.host }}
       http:
         paths:
-          - path: /traefikecho
-            pathType: Prefix
+          - path: {{ .Values.pgadmin.path }}
+            pathType: {{ .Values.pgadmin.pathType }}
             backend:
-              service:
-                name: echoserver-svc
-                port:
-                  number: 80
-          - path: /traefikhello
-            pathType: Prefix
+              serviceName: {{ .Values.pgadmin.name }}-svc
+              servicePort: {{ .Values.pgadmin.servicePort }}
+
+          - path: {{ .Values.echoserver.path }}
+            pathType: {{ .Values.echoserver.pathType }}
             backend:
-              service:
-                name: helloworld-svc
-                port:
-                  number: 80
+              serviceName: {{ .Values.echoserver.name }}-svc
+              servicePort: {{ .Values.echoserver.servicePort }}
+              
+          - path: {{ .Values.pgadmin.path }}
+            pathType: {{ .Values.pgadmin.pathType }}
+            backend:
+              serviceName: {{ .Values.pgadmin.name }}-svc
+              servicePort: {{ .Values.pgadmin.servicePort }}
