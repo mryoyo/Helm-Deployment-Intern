@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.pgadmin.kong }}
+  labels:
+    app: {{ .Values.pgadmin.kong }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.pgadmin.kong }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.pgadmin.kong }}
+    spec:
+      containers:
+        - name: {{ .Values.pgadmin.kong }}
+          image: {{ .Values.pgadmin.image }}
+          env:
+            - name: PGADMIN_DEFAULT_PASSWORD
+              value: {{ .Values.pgadmin.password }}
+            - name: PGADMIN_DEFAULT_EMAIL
+              value: {{ .Values.pgadmin.email }}
+            - name: SCRIPT_NAME 
+              value: {{ .Values.pgadmin.kongscriptname }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+            - name: https
+              containerPort: 443
+              protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.pgadmin.kong }}-svc
+  labels:
+    app: {{ .Values.pgadmin.kong }}
+spec:
+  type: {{ .Values.pgadmin.serviceType }}
+  ports:
+    - port: {{ .Values.pgadmin.servicePort }}
+  selector:
+    app: {{ .Values.pgadmin.kong }}
