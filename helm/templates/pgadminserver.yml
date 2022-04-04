@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.pgadmin.name }}
+  name: {{ .Values.pgadmin.kong }}
   labels:
-    app: {{ .Values.pgadmin.name }}
+    app: {{ .Values.pgadmin.kong }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.pgadmin.name }}
+      app: {{ .Values.pgadmin.kong }}
   template:
     metadata:
       labels:
-        app: {{ .Values.pgadmin.name }}
+        app: {{ .Values.pgadmin.kong }}
     spec:
       containers:
-        - name: {{ .Values.pgadmin.name }}
+        - name: {{ .Values.pgadmin.kong }}
           image: {{ .Values.pgadmin.image }}
           env:
             - name: PGADMIN_DEFAULT_PASSWORD
@@ -23,7 +23,7 @@ spec:
             - name: PGADMIN_DEFAULT_EMAIL
               value: {{ .Values.pgadmin.email }}
             - name: SCRIPT_NAME 
-              value: {{ .Values.pgadmin.scriptname }}
+              value: {{ .Values.pgadmin.kongscriptname }}
           ports:
             - name: http
               containerPort: 80
@@ -31,16 +31,67 @@ spec:
             - name: https
               containerPort: 443
               protocol: TCP
+
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.pgadmin.name }}-svc
+  name: {{ .Values.pgadmin.kong }}-svc
   labels:
-    app: {{ .Values.pgadmin.name }}
+    app: {{ .Values.pgadmin.kong }}
 spec:
   type: {{ .Values.pgadmin.serviceType }}
   ports:
     - port: {{ .Values.pgadmin.servicePort }}
   selector:
-    app: {{ .Values.pgadmin.name }}
+    app: {{ .Values.pgadmin.kong }}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.pgadmin.traefik }}
+  labels:
+    app: {{ .Values.pgadmin.traefik }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.pgadmin.traefik }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.pgadmin.traefik }}
+    spec:
+      containers:
+        - name: {{ .Values.pgadmin.traefik }}
+          image: {{ .Values.pgadmin.image }}
+          env:
+            - name: PGADMIN_DEFAULT_PASSWORD
+              value: {{ .Values.pgadmin.password }}
+            - name: PGADMIN_DEFAULT_EMAIL
+              value: {{ .Values.pgadmin.email }}
+            - name: SCRIPT_NAME 
+              value: {{ .Values.pgadmin.traefikscriptname }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+            - name: https
+              containerPort: 443
+              protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.pgadmin.traefik }}-svc
+  labels:
+    app: {{ .Values.pgadmin.traefik }}
+spec:
+  type: {{ .Values.pgadmin.serviceType }}
+  ports:
+    - port: {{ .Values.pgadmin.servicePort }}
+  selector:
+    app: {{ .Values.pgadmin.traefik }}
