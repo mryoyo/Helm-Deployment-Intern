@@ -47,20 +47,26 @@ spec:
           - path: {{ .Values.pgadmin.kong_path }}
             pathType: {{ .Values.pgadmin.pathType }}
             backend:
-              serviceName: {{ .Values.pgadmin.name }}-svc
-              servicePort: {{ .Values.pgadmin.servicePort }}
+              service:
+                name: {{ .Values.pgadmin.name }}-svc
+                port: 
+                  number: {{ .Values.pgadmin.servicePort }}
 
           - path: {{ .Values.echoserver.kong_path }}
             pathType: {{ .Values.echoserver.pathType }}
             backend:
-              serviceName: {{ .Values.echoserver.name }}-svc
-              servicePort: {{ .Values.echoserver.servicePort }}
+              service:
+                name: {{ .Values.echoserver.name }}-svc
+                port: 
+                  number: {{ .Values.echoserver.servicePort }}
 
           - path: {{ .Values.helloworld.kong_path }}
             pathType: {{ .Values.helloworld.pathType }}
             backend:
-              serviceName: {{ .Values.helloworld.name }}-svc
-              servicePort: {{ .Values.helloworld.servicePort }}
+              service:
+                name: {{ .Values.helloworld.name }}-svc
+                port: 
+                  number: {{ .Values.helloworld.servicePort }}
 
 ---
 apiVersion: networking.k8s.io/v1
@@ -77,17 +83,23 @@ spec:
           - path: {{ .Values.pgadmin.traefik_path }}
             pathType: {{ .Values.pgadmin.pathType }}
             backend:
-              serviceName: {{ .Values.pgadmin.name }}-svc
-              servicePort: {{ .Values.pgadmin.servicePort }}
+              service:
+                name: {{ .Values.pgadmin.name }}-svc
+                port: 
+                  number: {{ .Values.pgadmin.servicePort }}
 
           - path: {{ .Values.echoserver.traefik_path }}
             pathType: {{ .Values.echoserver.pathType }}
             backend:
-              serviceName: {{ .Values.echoserver.name }}-svc
-              servicePort: {{ .Values.echoserver.servicePort }}
+              service:
+                name: {{ .Values.echoserver.name }}-svc
+                port: 
+                  number: {{ .Values.echoserver.servicePort }}
               
           - path: {{ .Values.helloworld.traefik_path }}
             pathType: {{ .Values.helloworld.pathType }}
             backend:
-              serviceName: {{ .Values.helloworld.name }}-svc
-              servicePort: {{ .Values.helloworld.servicePort }}
+              service:
+                name: {{ .Values.helloworld.name }}-svc
+                port: 
+                  number: {{ .Values.helloworld.servicePort }}
