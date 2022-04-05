@@ -40,6 +40,15 @@ spec:
       values: |-
         proxy:
           enabled: false
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key:  eks.amazonaws.com/nodegroup
+                  operator: In
+                  values:
+                  - RGB01-node-group-20220405040313931200000013
   destination:
     server: {{ .Values.kongig.server }}
     namespace: {{ .Values.kongig.namespacedest }}
