@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.ingress.traefik }}
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: {{ .Values.pgadmin.traefik_path }}
+            pathType: {{ .Values.pgadmin.pathType }}
+            backend:
+              service:
+                name: {{ .Values.pgadmin.traefik }}-svc
+                port: 
+                  number: {{ .Values.pgadmin.servicePort }}
+
+          - path: {{ .Values.echoserver.traefik_path }}
+            pathType: {{ .Values.echoserver.pathType }}
+            backend:
+              service:
+                name: {{ .Values.echoserver.name }}-svc
+                port: 
+                  number: {{ .Values.echoserver.servicePort }}
+              
+          - path: {{ .Values.helloworld.traefik_path }}
+            pathType: {{ .Values.helloworld.pathType }}
+            backend:
+              service:
+                name: {{ .Values.helloworld.name }}-svc
+                port: 
+                  number: {{ .Values.helloworld.servicePort }}
