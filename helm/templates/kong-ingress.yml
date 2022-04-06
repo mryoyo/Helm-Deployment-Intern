@@ -10,14 +10,6 @@ spec:
     - host: {{ .Values.ingress.host }}
       http:
         paths:
-          - path: {{ .Values.pgadmin.kong_path }}
-            pathType: {{ .Values.pgadmin.pathType }}
-            backend:
-              service:
-                name: {{ .Values.pgadmin.kong }}-svc
-                port: 
-                  number: {{ .Values.pgadmin.servicePort }}
-
           - path: {{ .Values.echoserver.kong_path }}
             pathType: {{ .Values.echoserver.pathType }}
             backend:

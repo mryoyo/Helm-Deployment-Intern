@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.ingress.kong }}
+  annotations:
+    kubernetes.io/ingress.class: "kong"
+    # konghq.com/strip-path: "true"
+spec:
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: {{ .Values.pgadmin.kong_path }}
+            pathType: {{ .Values.pgadmin.pathType }}
+            backend:
+              service:
+                name: {{ .Values.pgadmin.kong }}-svc
+                port: 
+                  number: {{ .Values.pgadmin.servicePort }}

@@ -9,14 +9,6 @@ spec:
     - host: {{ .Values.ingress.host }}
       http:
         paths:
-          - path: {{ .Values.pgadmin.traefik_path }}
-            pathType: {{ .Values.pgadmin.pathType }}
-            backend:
-              service:
-                name: {{ .Values.pgadmin.traefik }}-svc
-                port: 
-                  number: {{ .Values.pgadmin.servicePort }}
-
           - path: {{ .Values.echoserver.traefik_path }}
             pathType: {{ .Values.echoserver.pathType }}
             backend:
