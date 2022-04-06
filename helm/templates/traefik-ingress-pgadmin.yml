@@ -13,6 +13,6 @@ spec:
             pathType: {{ .Values.pgadmin.pathType }}
             backend:
               service:
-                name: {{ .Values.pgadmin.traefik }}-svc
+                name: {{ .Values.pgadmin.name }}-svc
                 port: 
                   number: {{ .Values.pgadmin.servicePort }}
