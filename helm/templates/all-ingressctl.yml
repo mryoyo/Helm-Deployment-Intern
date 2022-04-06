@@ -38,6 +38,8 @@ spec:
     targetRevision: {{ .Values.kongig.targetrevision }}
     helm:
       values: |-
+        env:
+          trusted_ips: "0.0.0.0/0,::/0"
         proxy:
           enabled: false
   destination:
